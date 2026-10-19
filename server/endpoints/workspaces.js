@@ -821,9 +821,10 @@ function workspaceEndpoints(app) {
     "/workspace/:slug/upload-and-embed",
     [
       validatedRequest,
-      // Default users may add documents only to workspaces they belong to;
-      // Workspace.getWithUser below enforces that membership.
+      // Default users may add documents only to workspaces they belong to.
+      // validWorkspaceSlug enforces membership BEFORE multer writes the file.
       flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.default]),
+      validWorkspaceSlug,
       handleFileUpload,
     ],
     async function (request, response) {

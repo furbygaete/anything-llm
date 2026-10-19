@@ -12,7 +12,7 @@ concurrency:
 
 on:
   push:
-    branches: ['master'] # master branch only. Do not modify.
+    branches: ['master', 'sabia/**'] # fork: also build sabia/* branches to ghcr.io
     paths-ignore:
       - '**.md'
       - '.gitmodules'
