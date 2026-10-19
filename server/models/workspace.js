@@ -224,6 +224,12 @@ const Workspace = {
           // Sabia: customer deployments set DEFAULT_CHAT_MODE=query so chats
           // answer only from documents and never enter the agent flow.
           chatMode: process.env.DEFAULT_CHAT_MODE || "automatic",
+          ...(process.env.DEFAULT_TOP_N
+            ? { topN: Number(process.env.DEFAULT_TOP_N) }
+            : {}),
+          ...(process.env.DEFAULT_VECTOR_SEARCH_MODE
+            ? { vectorSearchMode: process.env.DEFAULT_VECTOR_SEARCH_MODE }
+            : {}),
           ...this.validateFields(additionalFields),
           slug,
         },
