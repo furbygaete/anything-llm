@@ -221,7 +221,9 @@ const Workspace = {
       const workspace = await prisma.workspaces.create({
         data: {
           name: this.validations.name(name),
-          chatMode: "automatic",
+          // Sabia: customer deployments set DEFAULT_CHAT_MODE=query so chats
+          // answer only from documents and never enter the agent flow.
+          chatMode: process.env.DEFAULT_CHAT_MODE || "automatic",
           ...this.validateFields(additionalFields),
           slug,
         },
@@ -231,6 +233,12 @@ const Workspace = {
       // If creating with an admin User it wont change anything because admins can
       // view all workspaces anyway.
       if (!!creatorId) await WorkspaceUser.create(creatorId, workspace.id);
+
+      // Sabia: a new workspace starts with every shared/ document.
+      const { syncSharedDocs } = require("../utils/sharedDocs");
+      await syncSharedDocs(workspace).catch((e) =>
+        console.error("[sharedDocs] sync on create failed:", e.message)
+      );
       return { workspace, message: null };
     } catch (error) {
       console.error(error.message);

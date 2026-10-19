@@ -2022,6 +2022,16 @@ const TRANSLATIONS = {
       aborted: "تولید تصویر متوقف شد.",
     },
   },
+  "customer-docs": {
+    title: null,
+    empty: null,
+    processing: null,
+    shared: null,
+    remove: null,
+    "remove-confirm": null,
+    "remove-failed": null,
+    "upload-failed": null,
+  },
 };
 
 export default TRANSLATIONS;

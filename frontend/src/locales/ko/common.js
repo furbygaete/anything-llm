@@ -1989,6 +1989,16 @@ const TRANSLATIONS = {
       aborted: "이미지 생성 작업이 중단되었습니다.",
     },
   },
+  "customer-docs": {
+    title: null,
+    empty: null,
+    processing: null,
+    shared: null,
+    remove: null,
+    "remove-confirm": null,
+    "remove-failed": null,
+    "upload-failed": null,
+  },
 };
 
 export default TRANSLATIONS;

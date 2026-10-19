@@ -5,6 +5,7 @@ const { Telemetry } = require("./telemetry");
 const { EventLogs } = require("./eventLogs");
 const { safeJsonParse } = require("../utils/http");
 const { getModelTag } = require("../endpoints/utils");
+const { isSharedDoc } = require("../utils/sharedDocs");
 
 const Document = {
   writable: ["pinned", "watched", "lastUpdatedAt"],
@@ -80,7 +81,12 @@ const Document = {
     }
   },
 
-  addDocuments: async function (workspace, additions = [], userId = null) {
+  addDocuments: async function (
+    workspace,
+    additions = [],
+    userId = null,
+    { propagate = true } = {}
+  ) {
     const VectorDb = getVectorDbClass();
     if (additions.length === 0) return { failed: [], embedded: [] };
     const { fileData } = require("../utils/files");
@@ -198,6 +204,14 @@ const Document = {
       },
       userId
     );
+
+    // Sabia: documents under shared/ belong to every workspace.
+    if (propagate && embedded.some(isSharedDoc)) {
+      const { propagateSharedDocs } = require("../utils/sharedDocs");
+      await propagateSharedDocs(embedded, workspace.id).catch((e) =>
+        console.error("[sharedDocs] propagation failed:", e.message)
+      );
+    }
     return { failedToEmbed, errors: Array.from(errors), embedded };
   },
 

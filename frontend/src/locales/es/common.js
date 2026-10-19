@@ -2080,6 +2080,16 @@ const TRANSLATIONS = {
       aborted: "La generación de imágenes se ha cancelado.",
     },
   },
+  "customer-docs": {
+    title: "Documentos en este espacio de trabajo ({{count}})",
+    empty: "Aún no hay documentos.",
+    processing: "Procesando {{name}}…",
+    shared: "Compartido",
+    remove: "Quitar documento",
+    "remove-confirm": '¿Quitar "{{name}}" de este espacio de trabajo?',
+    "remove-failed": "No se pudo quitar el documento",
+    "upload-failed": "error al subir",
+  },
 };
 
 export default TRANSLATIONS;

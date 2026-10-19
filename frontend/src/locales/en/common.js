@@ -2009,6 +2009,16 @@ const TRANSLATIONS = {
       },
     },
   },
+  "customer-docs": {
+    title: "Documents in this workspace ({{count}})",
+    empty: "No documents yet.",
+    processing: "Processing {{name}}…",
+    shared: "Shared",
+    remove: "Remove document",
+    "remove-confirm": 'Remove "{{name}}" from this workspace?',
+    "remove-failed": "Could not remove document",
+    "upload-failed": "upload failed",
+  },
 };
 
 export default TRANSLATIONS;

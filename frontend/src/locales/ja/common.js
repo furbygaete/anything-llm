@@ -2021,6 +2021,16 @@ const TRANSLATIONS = {
       aborted: "画像の生成は中止されました。",
     },
   },
+  "customer-docs": {
+    title: null,
+    empty: null,
+    processing: null,
+    shared: null,
+    remove: null,
+    "remove-confirm": null,
+    "remove-failed": null,
+    "upload-failed": null,
+  },
 };
 
 export default TRANSLATIONS;

@@ -39,6 +39,7 @@ const { WorkspaceThread } = require("../models/workspaceThread");
 
 const truncate = require("truncate");
 const { purgeDocument } = require("../utils/files/purgeDocument");
+const { isSharedDoc } = require("../utils/sharedDocs");
 const { getModelTag } = require("./utils");
 const { searchWorkspaceAndThreads } = require("../utils/helpers/search");
 const { workspaceParsedFilesEndpoints } = require("./workspacesParsedFiles");
@@ -923,6 +924,9 @@ function workspaceEndpoints(app) {
         // removeDocuments is scoped to currWorkspace.id, so an unknown path
         // is a no-op. The source file stays in the library for admins.
         if (user?.role === ROLES.default) {
+          // Company-wide documents are managed by admins/managers only.
+          if (isSharedDoc(body.documentLocation))
+            return response.sendStatus(403).end();
           await Document.removeDocuments(
             currWorkspace,
             [body.documentLocation],

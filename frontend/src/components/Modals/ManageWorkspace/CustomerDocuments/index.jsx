@@ -1,9 +1,13 @@
-import { CloudArrowUp, Trash } from "@phosphor-icons/react";
+import { CloudArrowUp, Trash, UsersThree } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useTranslation } from "react-i18next";
 import Workspace from "@/models/workspace";
 import showToast from "@/utils/toast";
+
+// Mirrors server/utils/sharedDocs.js: documents under this library folder are
+// company-wide and only admins/managers may remove them.
+const SHARED_PREFIX = "shared/";
 
 /**
  * Document manager for `default`-role users (customers). They can only add to
@@ -31,21 +35,26 @@ export default function CustomerDocuments({ workspace }) {
         formData
       );
       if (!response.ok || !data?.success)
-        showToast(`${file.name}: ${data?.error ?? "upload failed"}`, "error");
+        showToast(
+          `${file.name}: ${data?.error ?? t("customer-docs.upload-failed")}`,
+          "error"
+        );
     }
     setBusy(null);
     await refresh();
   }
 
   async function remove(doc) {
-    if (!window.confirm(`Remove "${titleOf(doc)}" from this workspace?`))
+    if (
+      !window.confirm(t("customer-docs.remove-confirm", { name: titleOf(doc) }))
+    )
       return;
     setBusy(doc.filename);
     const ok = await Workspace.deleteAndUnembedFile(
       workspace.slug,
       doc.docpath
     );
-    if (!ok) showToast("Could not remove document", "error");
+    if (!ok) showToast(t("customer-docs.remove-failed"), "error");
     setBusy(null);
     await refresh();
   }
@@ -68,7 +77,9 @@ export default function CustomerDocuments({ workspace }) {
         <input {...getInputProps()} />
         <CloudArrowUp className="w-8 h-8 text-white/80 light:invert" />
         <div className="text-white text-opacity-80 text-sm font-semibold py-1">
-          {busy ? `Processing ${busy}…` : t("connectors.upload.click-upload")}
+          {busy
+            ? t("customer-docs.processing", { name: busy })
+            : t("connectors.upload.click-upload")}
         </div>
         <div className="text-white text-opacity-60 text-xs font-medium py-1">
           {t("connectors.upload.file-types")}
@@ -76,31 +87,44 @@ export default function CustomerDocuments({ workspace }) {
       </div>
 
       <div className="text-white text-sm font-semibold">
-        Documents in this workspace ({docs.length})
+        {t("customer-docs.title", { count: docs.length })}
       </div>
       {docs.length === 0 ? (
-        <p className="text-white/60 text-xs">No documents yet.</p>
+        <p className="text-white/60 text-xs">{t("customer-docs.empty")}</p>
       ) : (
         <ul className="max-h-[260px] overflow-y-auto flex flex-col gap-y-1">
-          {docs.map((doc) => (
-            <li
-              key={doc.docId}
-              className="flex items-center justify-between bg-theme-bg-secondary rounded-lg px-3 py-2 text-white text-xs"
-            >
-              <span className="truncate mr-2" title={titleOf(doc)}>
-                {titleOf(doc)}
-              </span>
-              <button
-                type="button"
-                disabled={!!busy}
-                onClick={() => remove(doc)}
-                aria-label="Remove document"
-                className="border-none bg-transparent text-white/60 hover:text-red-400 disabled:opacity-40"
+          {docs.map((doc) => {
+            const shared = doc.docpath?.startsWith(SHARED_PREFIX);
+            return (
+              <li
+                key={doc.docId}
+                className="flex items-center justify-between bg-theme-bg-secondary rounded-lg px-3 py-2 text-white text-xs"
               >
-                <Trash size={16} />
-              </button>
-            </li>
-          ))}
+                <span className="truncate mr-2" title={titleOf(doc)}>
+                  {titleOf(doc)}
+                </span>
+                {shared ? (
+                  <span
+                    className="flex items-center gap-x-1 text-white/60 shrink-0"
+                    title={t("customer-docs.shared")}
+                  >
+                    <UsersThree size={16} />
+                    {t("customer-docs.shared")}
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={!!busy}
+                    onClick={() => remove(doc)}
+                    aria-label={t("customer-docs.remove")}
+                    className="border-none bg-transparent text-white/60 hover:text-red-400 disabled:opacity-40"
+                  >
+                    <Trash size={16} />
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

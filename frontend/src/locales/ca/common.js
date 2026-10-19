@@ -2061,6 +2061,16 @@ const TRANSLATIONS = {
       aborted: "La generació d'imatges va ser interrompuda.",
     },
   },
+  "customer-docs": {
+    title: null,
+    empty: null,
+    processing: null,
+    shared: null,
+    remove: null,
+    "remove-confirm": null,
+    "remove-failed": null,
+    "upload-failed": null,
+  },
 };
 
 export default TRANSLATIONS;
