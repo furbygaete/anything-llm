@@ -164,25 +164,25 @@ export default function ActiveWorkspaces() {
                                 </p>
                               </div>
                             </div>
-                            {user?.role !== "default" && (
-                              <div
-                                className={`flex items-center gap-x-[2px] transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                            <div
+                              className={`flex items-center gap-x-[2px] transition-opacity duration-200 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                            >
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setSelectedWs(workspace);
+                                  showModal();
+                                }}
+                                data-tooltip-id="upload-workspace"
+                                data-tooltip-content="Upload documents to this workspace for RAG indexing"
+                                className={`group/upload border-none rounded-md flex items-center justify-center ml-auto p-[2px] ${isActive ? "hover:bg-zinc-500 light:hover:bg-sky-800/30" : "hover:bg-zinc-500 light:hover:bg-slate-400"}`}
                               >
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    setSelectedWs(workspace);
-                                    showModal();
-                                  }}
-                                  data-tooltip-id="upload-workspace"
-                                  data-tooltip-content="Upload documents to this workspace for RAG indexing"
-                                  className={`group/upload border-none rounded-md flex items-center justify-center ml-auto p-[2px] ${isActive ? "hover:bg-zinc-500 light:hover:bg-sky-800/30" : "hover:bg-zinc-500 light:hover:bg-slate-400"}`}
-                                >
-                                  <UploadSimple
-                                    className={`h-[20px] w-[20px] ${isActive ? "text-zinc-400 hover:text-white light:text-blue-700 light:group-hover/upload:text-blue-900" : "text-zinc-400 hover:text-white light:text-slate-600 light:group-hover/upload:text-slate-950"}`}
-                                  />
-                                </button>
+                                <UploadSimple
+                                  className={`h-[20px] w-[20px] ${isActive ? "text-zinc-400 hover:text-white light:text-blue-700 light:group-hover/upload:text-blue-900" : "text-zinc-400 hover:text-white light:text-slate-600 light:group-hover/upload:text-slate-950"}`}
+                                />
+                              </button>
+                              {user?.role !== "default" && (
                                 <button
                                   onClick={(e) => {
                                     e.preventDefault();
@@ -210,8 +210,8 @@ export default function ActiveWorkspaces() {
                                     className={`h-[20px] w-[20px] ${isActive ? "text-zinc-400 hover:text-white light:text-blue-700 light:group-hover/gear:text-blue-900" : "text-zinc-400 hover:text-white light:text-slate-600 light:group-hover/gear:text-slate-950"}`}
                                   />
                                 </button>
-                              </div>
-                            )}
+                              )}
+                            </div>
                           </div>
                         </Link>
                       </div>

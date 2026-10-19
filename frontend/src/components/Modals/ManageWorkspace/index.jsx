@@ -7,6 +7,7 @@ import System from "../../../models/system";
 import { isMobileOnly } from "react-device-detect";
 import useUser from "../../../hooks/useUser";
 import DocumentSettings from "./Documents";
+import CustomerDocuments from "./CustomerDocuments";
 import DataConnectors from "./DataConnectors";
 import Modal, {
   ModalHeader,
@@ -87,7 +88,9 @@ const ManageWorkspace = ({ hideModal = noop, providedSlug = null }) => {
             />
           )}
 
-          {selectedTab === "documents" ? (
+          {user?.role === "default" ? (
+            <CustomerDocuments workspace={workspace} />
+          ) : selectedTab === "documents" ? (
             <EmbeddingProgressProvider>
               <DocumentSettings workspace={workspace} />
             </EmbeddingProgressProvider>
@@ -137,9 +140,7 @@ export function useManageWorkspaceModal() {
   const [showing, setShowing] = useState(false);
 
   function showModal() {
-    if (user?.role !== "default") {
-      setShowing(true);
-    }
+    setShowing(true);
   }
 
   function hideModal() {

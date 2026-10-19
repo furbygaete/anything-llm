@@ -821,7 +821,9 @@ function workspaceEndpoints(app) {
     "/workspace/:slug/upload-and-embed",
     [
       validatedRequest,
-      flexUserRoleValid([ROLES.admin, ROLES.manager]),
+      // Default users may add documents only to workspaces they belong to;
+      // Workspace.getWithUser below enforces that membership.
+      flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.default]),
       handleFileUpload,
     ],
     async function (request, response) {
@@ -899,7 +901,7 @@ function workspaceEndpoints(app) {
     "/workspace/:slug/remove-and-unembed",
     [
       validatedRequest,
-      flexUserRoleValid([ROLES.admin, ROLES.manager]),
+      flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.default]),
       handleFileUpload,
     ],
     async function (request, response) {
@@ -913,6 +915,20 @@ function workspaceEndpoints(app) {
 
         if (!currWorkspace || !body.documentLocation)
           return response.sendStatus(400).end();
+
+        // Default users only unembed from their own workspace. purgeDocument
+        // works on the global library by path, so letting them call it would
+        // let a member of workspace A delete workspace B's files.
+        // removeDocuments is scoped to currWorkspace.id, so an unknown path
+        // is a no-op. The source file stays in the library for admins.
+        if (user?.role === ROLES.default) {
+          await Document.removeDocuments(
+            currWorkspace,
+            [body.documentLocation],
+            user?.id
+          );
+          return response.status(200).end();
+        }
 
         // Will delete the document from the entire system + wil unembed it.
         await purgeDocument(body.documentLocation);
