@@ -1,24 +1,26 @@
 import { CaretRight } from "@phosphor-icons/react";
 import { formatSkillName } from "../formatSkillName";
+import { useTranslation } from "react-i18next";
 
 export default function ImportedSkillList({
   skills = [],
   selectedSkill = null,
   handleClick = null,
 }) {
+  const { t } = useTranslation();
   if (skills.length === 0)
     return (
       <div className="text-theme-text-secondary text-center text-xs flex flex-col gap-y-2">
-        <p>No imported skills found</p>
+        <p>{t("agent-skills-page.no-skills")}</p>
         <p>
-          Learn about agent skills in the{" "}
+          {t("agent-skills-page.learn-skills")}{" "}
           <a
             href="https://docs.anythingllm.com/agent/custom/developer-guide"
             target="_blank"
             className="text-theme-text-secondary underline hover:text-cta-button"
             rel="noreferrer"
           >
-            AnythingLLM Agent Docs
+            {t("agent-skills-page.docs-link")}
           </a>
           .
         </p>

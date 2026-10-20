@@ -2019,6 +2019,17 @@ const TRANSLATIONS = {
     "remove-failed": "Could not remove document",
     "upload-failed": "upload failed",
   },
+  "agent-skills-page": {
+    title: "Agent Skills",
+    "custom-skills": "Custom Skills",
+    "agent-flows": "Agent Flows",
+    "create-flow": "Create Flow",
+    "no-flows": "No agent flows found",
+    "learn-flows": "Learn more about Agent Flows.",
+    "no-skills": "No imported skills found",
+    "learn-skills": "Learn about agent skills in the",
+    "docs-link": "AnythingLLM Agent Docs",
+  },
 };
 
 export default TRANSLATIONS;

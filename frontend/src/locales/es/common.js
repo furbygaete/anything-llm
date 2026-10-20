@@ -68,7 +68,7 @@ const TRANSLATIONS = {
     none: "Ninguno",
     stopped: "Parado",
     loading: "Cargando",
-    refresh: "Renovar; revitalizar",
+    refresh: "Actualizar",
     noResults: "No se encontraron resultados",
   },
   settings: {
@@ -2089,6 +2089,17 @@ const TRANSLATIONS = {
     "remove-confirm": '¿Quitar "{{name}}" de este espacio de trabajo?',
     "remove-failed": "No se pudo quitar el documento",
     "upload-failed": "error al subir",
+  },
+  "agent-skills-page": {
+    title: "Habilidades del agente",
+    "custom-skills": "Habilidades personalizadas",
+    "agent-flows": "Flujos de agente",
+    "create-flow": "Crear flujo",
+    "no-flows": "No se encontraron flujos de agente",
+    "learn-flows": "Más información sobre los flujos de agente.",
+    "no-skills": "No se encontraron habilidades importadas",
+    "learn-skills": "Conocé más sobre las habilidades de agente en la",
+    "docs-link": "documentación de agentes de AnythingLLM",
   },
 };
 

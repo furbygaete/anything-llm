@@ -1999,6 +1999,17 @@ const TRANSLATIONS = {
     "remove-failed": null,
     "upload-failed": null,
   },
+  "agent-skills-page": {
+    title: null,
+    "custom-skills": null,
+    "agent-flows": null,
+    "create-flow": null,
+    "no-flows": null,
+    "learn-flows": null,
+    "no-skills": null,
+    "learn-skills": null,
+    "docs-link": null,
+  },
 };
 
 export default TRANSLATIONS;

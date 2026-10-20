@@ -377,7 +377,9 @@ export default function AdminAgents() {
           >
             <div className="text-theme-text-primary flex items-center gap-x-2">
               <Robot size={24} />
-              <p className="text-lg font-medium">Agent Skills</p>
+              <p className="text-lg font-medium">
+                {t("agent-skills-page.title")}
+              </p>
             </div>
             {/* Default skills */}
             <SkillList
@@ -413,7 +415,9 @@ export default function AdminAgents() {
 
             <div className="text-theme-text-primary flex items-center gap-x-2">
               <Plug size={24} />
-              <p className="text-lg font-medium">Custom Skills</p>
+              <p className="text-lg font-medium">
+                {t("agent-skills-page.custom-skills")}
+              </p>
             </div>
             <ImportedSkillList
               skills={importedSkills}
@@ -423,7 +427,9 @@ export default function AdminAgents() {
 
             <div className="text-theme-text-primary flex items-center gap-x-2 mt-6">
               <FlowArrow size={24} />
-              <p className="text-lg font-medium">Agent Flows</p>
+              <p className="text-lg font-medium">
+                {t("agent-skills-page.agent-flows")}
+              </p>
             </div>
             <AgentFlowsList
               flows={agentFlows}
@@ -600,7 +606,9 @@ export default function AdminAgents() {
           <div className="flex-none flex justify-between items-center mb-4">
             <div className="text-theme-text-primary flex items-center gap-x-2">
               <Robot size={24} />
-              <p className="text-lg font-medium">Agent Skills</p>
+              <p className="text-lg font-medium">
+                {t("agent-skills-page.title")}
+              </p>
             </div>
             <AgentSkillSettings />
           </div>
@@ -641,7 +649,9 @@ export default function AdminAgents() {
 
               <div className="text-theme-text-primary flex items-center gap-x-2 mt-4">
                 <Plug size={24} />
-                <p className="text-lg font-medium">Custom Skills</p>
+                <p className="text-lg font-medium">
+                  {t("agent-skills-page.custom-skills")}
+                </p>
               </div>
               <ImportedSkillList
                 skills={importedSkills}
@@ -652,7 +662,9 @@ export default function AdminAgents() {
               <div className="text-theme-text-primary flex items-center justify-between gap-x-2 mt-4">
                 <div className="flex items-center gap-x-2">
                   <FlowArrow size={24} />
-                  <p className="text-lg font-medium">Agent Flows</p>
+                  <p className="text-lg font-medium">
+                    {t("agent-skills-page.agent-flows")}
+                  </p>
                 </div>
                 {agentFlows.length === 0 ? (
                   <Link
@@ -660,7 +672,9 @@ export default function AdminAgents() {
                     className="text-cta-button flex items-center gap-x-1 hover:underline"
                   >
                     <Hammer size={16} />
-                    <p className="text-sm">Create Flow</p>
+                    <p className="text-sm">
+                      {t("agent-skills-page.create-flow")}
+                    </p>
                   </Link>
                 ) : (
                   <Link
