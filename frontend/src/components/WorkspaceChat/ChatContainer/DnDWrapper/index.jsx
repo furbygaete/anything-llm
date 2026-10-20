@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, createContext, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { v4 } from "uuid";
 import System from "@/models/system";
 import { useDropzone } from "react-dropzone";
@@ -492,7 +493,10 @@ function DnDFileUploader({ workspace, threadSlug, children }) {
     const allEmbedded = finished.every((r) => r.status === "complete");
     showToast(
       allEmbedded
-        ? `${finished.length} ${pluralize("file", finished.length)} embedded successfully`
+        ? `${finished.length} ${pluralize(
+            "file",
+            finished.length
+          )} embedded successfully`
         : "Failed to embed files",
       allEmbedded ? "success" : "error"
     );
@@ -522,6 +526,7 @@ function DnDFileUploader({ workspace, threadSlug, children }) {
 }
 
 export default function DnDFileUploaderWrapper({ children }) {
+  const { t } = useTranslation();
   const { onDrop, ready, dragging, setDragging } =
     useContext(DndUploaderContext);
   const { getRootProps, getInputProps } = useDropzone({
@@ -550,10 +555,11 @@ export default function DnDFileUploaderWrapper({ children }) {
               height={69}
               alt="Drag and drop icon"
             />
-            <p className="text-white text-[24px] font-semibold">Add anything</p>
+            <p className="text-white text-[24px] font-semibold">
+              {t("customer-ui.drop-title")}
+            </p>
             <p className="text-white text-[16px] text-center">
-              Drop a file or image here to attach it to your <br />
-              workspace auto-magically.
+              {t("customer-ui.drop-description")}
             </p>
           </div>
         </div>

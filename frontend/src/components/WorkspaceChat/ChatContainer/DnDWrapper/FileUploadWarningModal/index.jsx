@@ -5,6 +5,7 @@ import Modal, {
   ModalPrimaryButton,
   ModalSecondaryButton,
 } from "@/components/lib/Modal";
+import { useTranslation } from "react-i18next";
 import pluralize from "pluralize";
 import { numberWithCommas } from "@/utils/numbers";
 import useUser from "@/hooks/useUser";
@@ -21,13 +22,17 @@ export default function FileUploadWarningModal({
   maxTokens,
   fileCount = 1,
 }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const canEmbed = !user || user.role !== "default";
   if (!show) return null;
 
   return (
     <Modal isOpen={show} onClose={onClose} size="lg">
-      <ModalHeader title="Context Window Warning" onClose={onClose} />
+      <ModalHeader
+        title={t("customer-ui.context-warning-title")}
+        onClose={onClose}
+      />
       <ModalBody>
         <p className="text-zinc-300 light:text-slate-700 text-sm">
           Your workspace is using {numberWithCommas(tokenCount)} of{" "}

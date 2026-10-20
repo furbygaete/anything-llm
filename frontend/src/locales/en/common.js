@@ -2030,6 +2030,20 @@ const TRANSLATIONS = {
     "learn-skills": "Learn about agent skills in the",
     "docs-link": "AnythingLLM Agent Docs",
   },
+  "customer-ui": {
+    "drop-title": "Add anything",
+    "drop-description":
+      "Drop a file or image here to attach it to your workspace.",
+    "thread-rename": "Rename",
+    "thread-delete": "Delete thread",
+    "upload-tooltip": "Upload documents to this workspace",
+    "open-settings": "Open settings",
+    "back-to-workspaces": "Back to workspaces",
+    "embedding-title": "Embedding files",
+    "embedding-can-close":
+      "You can close this window, embedding will continue in the background.",
+    "context-warning-title": "Context window warning",
+  },
 };
 
 export default TRANSLATIONS;

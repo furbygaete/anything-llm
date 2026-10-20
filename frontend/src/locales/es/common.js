@@ -2101,6 +2101,20 @@ const TRANSLATIONS = {
     "learn-skills": "Conocé más sobre las habilidades de agente en la",
     "docs-link": "documentación de agentes de AnythingLLM",
   },
+  "customer-ui": {
+    "drop-title": "Agregá lo que quieras",
+    "drop-description":
+      "Soltá un archivo o una imagen acá para adjuntarlo a tu espacio de trabajo.",
+    "thread-rename": "Renombrar",
+    "thread-delete": "Eliminar conversación",
+    "upload-tooltip": "Subir documentos a este espacio de trabajo",
+    "open-settings": "Abrir configuración",
+    "back-to-workspaces": "Volver a los espacios de trabajo",
+    "embedding-title": "Procesando archivos",
+    "embedding-can-close":
+      "Podés cerrar esta ventana; el procesamiento continúa en segundo plano.",
+    "context-warning-title": "Advertencia de ventana de contexto",
+  },
 };
 
 export default TRANSLATIONS;

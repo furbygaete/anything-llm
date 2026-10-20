@@ -1,4 +1,5 @@
 import Modal, { ModalHeader, ModalBody } from "@/components/lib/Modal";
+import { useTranslation } from "react-i18next";
 import EmbeddingFileRow from "@/components/EmbeddingFileRow";
 import { useEmbeddingProgress } from "@/EmbeddingProgressContext";
 
@@ -7,6 +8,7 @@ export default function EmbeddingProgressModal({
   onClose,
   workspaceSlug,
 }) {
+  const { t } = useTranslation();
   const { embeddingProgressMap, removeQueuedFile } = useEmbeddingProgress();
   const embeddingProgress = embeddingProgressMap[workspaceSlug];
   if (!show || !embeddingProgress) return null;
@@ -14,8 +16,8 @@ export default function EmbeddingProgressModal({
   return (
     <Modal isOpen={show} onClose={onClose} size="lg">
       <ModalHeader
-        title="Embedding files"
-        subtitle="You can close this window, embedding will continue in the background."
+        title={t("customer-ui.embedding-title")}
+        subtitle={t("customer-ui.embedding-can-close")}
         onClose={onClose}
       />
       <ModalBody>

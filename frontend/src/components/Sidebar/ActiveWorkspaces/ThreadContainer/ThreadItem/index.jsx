@@ -1,4 +1,5 @@
 import useScrollActiveItemIntoView from "@/hooks/useScrollActiveItemIntoView";
+import { useTranslation } from "react-i18next";
 import Workspace from "@/models/workspace";
 import paths from "@/utils/paths";
 import showToast from "@/utils/toast";
@@ -31,8 +32,8 @@ export default function ThreadItem({
   const linkTo = thread.virtual
     ? "/"
     : !thread.slug
-      ? paths.workspace.chat(workspaceSlug)
-      : paths.workspace.thread(workspaceSlug, thread.slug);
+    ? paths.workspace.chat(workspaceSlug)
+    : paths.workspace.thread(workspaceSlug, thread.slug);
 
   const { ref } = useScrollActiveItemIntoView({
     isActive,
@@ -71,7 +72,11 @@ export default function ThreadItem({
         className="h-full"
       />
       <div
-        className={`flex w-full items-center justify-between pr-2 group/thread relative ${isActive ? "bg-[var(--theme-sidebar-thread-selected)] light:bg-blue-200" : "hover:bg-theme-sidebar-subitem-hover light:hover:bg-slate-300"} rounded-[4px]`}
+        className={`flex w-full items-center justify-between pr-2 group/thread relative ${
+          isActive
+            ? "bg-[var(--theme-sidebar-thread-selected)] light:bg-blue-200"
+            : "hover:bg-theme-sidebar-subitem-hover light:hover:bg-slate-300"
+        } rounded-[4px]`}
       >
         {thread.deleted ? (
           <div className="w-full flex justify-between">
@@ -171,6 +176,7 @@ function OptionsMenu({
   close,
   currentThreadSlug,
 }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const menuRef = useRef(null);
 
@@ -267,7 +273,7 @@ function OptionsMenu({
         className="w-full rounded-md flex items-center p-2 gap-x-2 hover:bg-slate-500/20 text-slate-300 light:text-theme-text-primary"
       >
         <PencilSimple size={18} />
-        <p className="text-sm">Rename</p>
+        <p className="text-sm">{t("customer-ui.thread-rename")}</p>
       </button>
       <button
         onClick={handleDelete}
@@ -275,7 +281,7 @@ function OptionsMenu({
         className="w-full rounded-md flex items-center p-2 gap-x-2 hover:bg-red-500/20 text-slate-300 light:text-theme-text-primary hover:text-red-100"
       >
         <Trash size={18} />
-        <p className="text-sm">Delete Thread</p>
+        <p className="text-sm">{t("customer-ui.thread-delete")}</p>
       </button>
     </div>
   );

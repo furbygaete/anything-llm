@@ -2051,6 +2051,18 @@ const TRANSLATIONS = {
     "learn-skills": null,
     "docs-link": null,
   },
+  "customer-ui": {
+    "drop-title": null,
+    "drop-description": null,
+    "thread-rename": null,
+    "thread-delete": null,
+    "upload-tooltip": null,
+    "open-settings": null,
+    "back-to-workspaces": null,
+    "embedding-title": null,
+    "embedding-can-close": null,
+    "context-warning-title": null,
+  },
 };
 
 export default TRANSLATIONS;
