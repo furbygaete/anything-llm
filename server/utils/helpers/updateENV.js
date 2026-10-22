@@ -1594,6 +1594,16 @@ function dumpENV() {
     // and are either managed or manually set ENV key:values.
     "JWT_EXPIRY",
 
+    // Sabia customer deployment keys (read at boot / workspace creation).
+    "CUSTOMER_NAME",
+    "CUSTOMER_LOGO",
+    "CUSTOMER_SYSTEM_PROMPT_FILE",
+    "DEFAULT_CHAT_MODE",
+    "DEFAULT_TOP_N",
+    "DEFAULT_VECTOR_SEARCH_MODE",
+    "DEFAULT_QUERY_REFUSAL_RESPONSE",
+    "TUNNEL_TOKEN", // read by the cloudflared service in the same compose file
+
     "STORAGE_DIR",
     "SERVER_PORT",
     "COLLECTOR_PORT",
