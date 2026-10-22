@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Workspace from "@/models/workspace";
 import LoadingChat from "./LoadingChat";
 import ChatContainer from "./ChatContainer";
@@ -24,6 +25,7 @@ import { PROMPT_INPUT_ID } from "./ChatContainer/PromptInput";
 import { movePromptInputDraft } from "@/hooks/usePromptInputStorage";
 
 export default function WorkspaceChat({ loading, workspace }) {
+  const { t } = useTranslation();
   useWatchForAutoPlayAssistantTTSResponse();
   const { threadSlug = null } = useParams();
   const navigate = useNavigate();
@@ -100,14 +102,13 @@ export default function WorkspaceChat({ loading, workspace }) {
               title={
                 <span className="flex items-center gap-x-2 text-red-500">
                   <WarningCircle className="w-5 h-5" weight="fill" />
-                  Workspace not found
+                  {t("customer-ui.workspace-not-found")}
                 </span>
               }
             />
             <ModalBody>
               <p className="text-zinc-300 light:text-slate-700 text-sm">
-                The workspace you're looking for is not available. It may have
-                been deleted or you may not have access to it.
+                {t("customer-ui.workspace-not-found-body")}
               </p>
             </ModalBody>
             <ModalFooter className="justify-end">
@@ -115,7 +116,7 @@ export default function WorkspaceChat({ loading, workspace }) {
                 href={paths.home()}
                 className="flex items-center justify-center h-[34px] px-4 rounded-lg text-sm font-medium border-none bg-zinc-50 light:bg-slate-900 text-zinc-950 light:text-white hover:opacity-80 transition-all duration-200"
               >
-                Return to homepage
+                {t("customer-ui.return-home")}
               </a>
             </ModalFooter>
           </Modal>

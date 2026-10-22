@@ -2114,6 +2114,36 @@ const TRANSLATIONS = {
     "embedding-can-close":
       "Podés cerrar esta ventana; el procesamiento continúa en segundo plano.",
     "context-warning-title": "Advertencia de ventana de contexto",
+    "new-thread": "Nueva conversación",
+    "starting-thread": "Iniciando conversación...",
+    "delete-selected": "Eliminar seleccionadas",
+    "no-results-for": "Sin resultados para",
+    "link-copied-title": "¡Enlace copiado!",
+    "link-copied-body": "Se copió el enlace a esta conversación.",
+    "link-copied-note":
+      "Esto no cambia quién puede ver la conversación. Es solo un acceso rápido a tus propias conversaciones.",
+    "upload-warning-body":
+      "Tu espacio de trabajo usa {{used}} de {{max}} tokens disponibles. Agregar {{count}} archivo(s) más superaría el límite recomendado.",
+    "upload-warning-learn": "Más información sobre la ventana de contexto",
+    "upload-warning-choose": "Elegí cómo querés continuar con estos archivos.",
+    cancel: "Cancelar",
+    "continue-anyway": "Continuar igual",
+    "embed-files": "Procesar archivos",
+    "context-full":
+      "La ventana de contexto se está llenando. Algunos archivos pueden quedar recortados o fuera de las respuestas. Te recomendamos agregarlos a tu espacio de trabajo para mejores resultados.",
+    "embedding-progress": "Procesando {{done}} de {{total}} archivos...",
+    "embed-into-workspace": "Agregar archivos al espacio de trabajo",
+    loading: "Cargando...",
+    "no-files": "No se encontraron archivos",
+    "image-attached": "¡Imagen adjunta!",
+    "workspace-not-found": "Espacio de trabajo no encontrado",
+    "workspace-not-found-body":
+      "El espacio de trabajo que buscás no está disponible. Puede haber sido eliminado o no tenés acceso.",
+    "return-home": "Volver al inicio",
+    "stop-generating": "Detener respuesta",
+    "simple-view": "Vista simple",
+    "simple-help":
+      "Escribí tu pregunta abajo y tocá «Enviar». Las respuestas salen solo de los documentos del estudio.",
   },
 };
 

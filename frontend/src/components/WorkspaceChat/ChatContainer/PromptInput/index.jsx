@@ -341,9 +341,14 @@ export default function PromptInput({
         }
       >
         <div
-          className={`flex items-center rounded-lg md:w-full ${centered ? "mb-0" : "mb-4"}`}
+          className={`flex items-center rounded-lg md:w-full ${
+            centered ? "mb-0" : "mb-4"
+          }`}
         >
           <div className="relative w-[95vw] md:w-[750px]">
+            <p className="sabia-simple-only text-white light:text-slate-700 text-base mb-2 px-2">
+              {t("customer-ui.simple-help")}
+            </p>
             <ToolsMenu
               workspace={workspace}
               showing={showTools}
@@ -380,31 +385,37 @@ export default function PromptInput({
               <div className="flex justify-between items-center pt-3.5 pb-3">
                 <div className="flex items-center gap-x-0.25">
                   <div className="flex items-center gap-x-1">
-                    <AttachItem
-                      workspaceSlug={workspaceSlug}
-                      workspaceThreadSlug={threadSlug}
-                    />
-                    <AgentSessionButton
-                      sendCommand={sendCommand}
-                      promptInput={promptInput}
-                      textareaRef={textareaRef}
-                      visible={!agentSessionActive & showAgentCommand}
-                    />
-                    <ReasoningEffortButton
-                      workspaceSlug={workspaceSlug ?? workspace?.slug}
-                      threadSlug={reasoningSessionSlug ?? threadSlug}
-                      centered={centered}
-                    />
+                    <span data-simple-hide className="contents">
+                      <AttachItem
+                        workspaceSlug={workspaceSlug}
+                        workspaceThreadSlug={threadSlug}
+                      />
+                      <AgentSessionButton
+                        sendCommand={sendCommand}
+                        promptInput={promptInput}
+                        textareaRef={textareaRef}
+                        visible={!agentSessionActive & showAgentCommand}
+                      />
+                      <ReasoningEffortButton
+                        workspaceSlug={workspaceSlug ?? workspace?.slug}
+                        threadSlug={reasoningSessionSlug ?? threadSlug}
+                        centered={centered}
+                      />
+                    </span>
                   </div>
-                  <ToolsButton
-                    showTools={showTools}
-                    setShowTools={setShowTools}
-                    textareaRef={textareaRef}
-                    autoOpenedToolsRef={autoOpenedToolsRef}
-                  />
+                  <span data-simple-hide className="contents">
+                    <ToolsButton
+                      showTools={showTools}
+                      setShowTools={setShowTools}
+                      textareaRef={textareaRef}
+                      autoOpenedToolsRef={autoOpenedToolsRef}
+                    />
+                  </span>
                 </div>
                 <div className="flex gap-x-2 items-center">
-                  <SpeechToText sendCommand={sendCommand} />
+                  <span data-simple-hide className="contents">
+                    <SpeechToText sendCommand={sendCommand} />
+                  </span>
                   {isStreaming ? (
                     <StopGenerationButton />
                   ) : (
@@ -512,7 +523,7 @@ function SendPromptButton({ formRef, promptInput, isDisabled }) {
         ref={formRef}
         type="submit"
         disabled={isDisabled || !promptInput.trim().length}
-        className={`border-none flex justify-center items-center rounded-full w-8 h-8 transition-all ${
+        className={`sabia-send border-none flex justify-center items-center rounded-full w-8 h-8 transition-all ${
           promptInput.trim().length && !isDisabled
             ? "cursor-pointer bg-white hover:bg-zinc-200 light:bg-slate-800 light:hover:bg-slate-600"
             : "cursor-not-allowed bg-zinc-600 light:bg-slate-400"
@@ -530,6 +541,9 @@ function SendPromptButton({ formRef, promptInput, isDisabled }) {
           weight="bold"
         />
         <span className="sr-only">{t("chat_window.send")}</span>
+        <span className="sabia-simple-only font-semibold text-zinc-800 light:text-white">
+          {t("chat_window.send")}
+        </span>
       </button>
       <Tooltip
         id="send-prompt"

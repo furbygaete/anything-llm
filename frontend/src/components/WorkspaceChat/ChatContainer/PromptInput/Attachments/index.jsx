@@ -10,6 +10,7 @@ import {
   WarningOctagon,
   X,
 } from "@phosphor-icons/react";
+import { useTranslation } from "react-i18next";
 import { REMOVE_ATTACHMENT_EVENT } from "../../DnDWrapper";
 import { openImageLightbox } from "@/components/ImageLightbox";
 
@@ -53,6 +54,7 @@ export default function AttachmentManager({ attachments }) {
  * @param {{attachment: import("../../DnDWrapper").Attachment}}
  */
 function AttachmentItem({ attachment, onImageClick }) {
+  const { t } = useTranslation();
   const { uid, file, status, error, document, type, contentString } =
     attachment;
   const { iconBgColor, Icon } = displayFromFile(file);
@@ -178,7 +180,7 @@ function AttachmentItem({ attachment, onImageClick }) {
             {file.name}
           </p>
           <p className="text-theme-attachment-text-secondary text-[10px] leading-[14px] font-medium">
-            Image attached!
+            {t("customer-ui.image-attached")}
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Workspace from "@/models/workspace";
+import { useTranslation } from "react-i18next";
 import paths from "@/utils/paths";
 import showToast from "@/utils/toast";
 import { Plus, CircleNotch, Trash } from "@phosphor-icons/react";
@@ -189,6 +190,7 @@ export default function ThreadContainer({
 }
 
 function NewThreadButton({ workspace, onNewThread }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const onClick = async () => {
@@ -234,11 +236,11 @@ function NewThreadButton({ workspace, onNewThread }) {
 
         {loading ? (
           <p className="text-left text-white light:text-theme-text-primary text-sm">
-            Starting Thread...
+            {t("customer-ui.starting-thread")}
           </p>
         ) : (
           <p className="text-left text-white light:text-theme-text-primary text-sm font-semibold">
-            New Thread
+            {t("customer-ui.new-thread")}
           </p>
         )}
       </div>
@@ -247,6 +249,7 @@ function NewThreadButton({ workspace, onNewThread }) {
 }
 
 function DeleteAllThreadButton({ ctrlPressed, threads, onDelete }) {
+  const { t } = useTranslation();
   if (!ctrlPressed || threads.filter((t) => t.deleted).length === 0)
     return null;
   return (
@@ -264,7 +267,7 @@ function DeleteAllThreadButton({ ctrlPressed, threads, onDelete }) {
           />
         </div>
         <p className="text-white light:text-theme-text-secondary text-left text-sm group-hover:text-red-400">
-          Delete Selected
+          {t("customer-ui.delete-selected")}
         </p>
       </div>
     </button>

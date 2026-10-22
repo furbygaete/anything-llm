@@ -1,4 +1,5 @@
 import Modal, { ModalHeader, ModalBody } from "@/components/lib/Modal";
+import { useTranslation } from "react-i18next";
 import { useModal } from "@/hooks/useModal";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -50,16 +51,19 @@ export default function CopyLinkToChatRow() {
 }
 
 function CopyLinkModal({ isOpen, closeModal, url }) {
+  const { t } = useTranslation();
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
-      <ModalHeader title="Chat link copied!" onClose={closeModal} />
+      <ModalHeader
+        title={t("customer-ui.link-copied-title")}
+        onClose={closeModal}
+      />
       <ModalBody>
         <p className="text-sm text-zinc-400 light:text-slate-500">
-          The link to this chat has been copied to your clipboard.
+          {t("customer-ui.link-copied-body")}
         </p>
         <p className="text-sm text-zinc-400 light:text-slate-500">
-          This <strong>does not</strong> change permissions on the chat and is
-          simply a way for you to quick link to you own chats.
+          {t("customer-ui.link-copied-note")}
         </p>
         <div className="px-3 py-2 rounded-md bg-zinc-800 light:bg-slate-100 border border-white/10 light:border-slate-300 text-sm text-white light:text-slate-900 break-all select-all">
           {url}

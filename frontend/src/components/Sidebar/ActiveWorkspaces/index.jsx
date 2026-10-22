@@ -252,11 +252,13 @@ export default function ActiveWorkspaces() {
                         </Link>
                       </div>
                       {isActive && (
-                        <ThreadContainer
-                          workspace={workspace}
-                          isActive={isActive}
-                          isVirtualThread={isVirtuallyActive}
-                        />
+                        <div data-simple-hide>
+                          <ThreadContainer
+                            workspace={workspace}
+                            isActive={isActive}
+                            isVirtualThread={isVirtuallyActive}
+                          />
+                        </div>
                       )}
                     </div>
                   )}

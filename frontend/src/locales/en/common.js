@@ -2043,6 +2043,38 @@ const TRANSLATIONS = {
     "embedding-can-close":
       "You can close this window, embedding will continue in the background.",
     "context-warning-title": "Context window warning",
+    "new-thread": "New thread",
+    "starting-thread": "Starting thread...",
+    "delete-selected": "Delete selected",
+    "no-results-for": "No results found for",
+    "link-copied-title": "Chat link copied!",
+    "link-copied-body":
+      "The link to this chat has been copied to your clipboard.",
+    "link-copied-note":
+      "This does not change who can see the chat. It is just a quick link to your own chats.",
+    "upload-warning-body":
+      "Your workspace is using {{used}} of {{max}} available tokens. Adding {{count}} more file(s) would go over the recommended limit.",
+    "upload-warning-learn": "Learn more about context windows",
+    "upload-warning-choose":
+      "Choose how you would like to proceed with these uploads.",
+    cancel: "Cancel",
+    "continue-anyway": "Continue anyway",
+    "embed-files": "Embed files",
+    "context-full":
+      "Your context window is getting full. Some files may be truncated or left out of answers. We recommend adding these files to your workspace for better results.",
+    "embedding-progress": "Embedding {{done}} of {{total}} files...",
+    "embed-into-workspace": "Embed files into workspace",
+    loading: "Loading...",
+    "no-files": "No files found",
+    "image-attached": "Image attached!",
+    "workspace-not-found": "Workspace not found",
+    "workspace-not-found-body":
+      "The workspace you are looking for is not available. It may have been deleted or you may not have access to it.",
+    "return-home": "Return to homepage",
+    "stop-generating": "Stop generating",
+    "simple-view": "Simple view",
+    "simple-help":
+      "Type your question below and press Send. Answers come only from your firm's documents.",
   },
 };
 

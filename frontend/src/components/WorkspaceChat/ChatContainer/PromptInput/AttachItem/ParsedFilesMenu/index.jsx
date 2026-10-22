@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { X, CircleNotch, Warning } from "@phosphor-icons/react";
 import Workspace from "@/models/workspace";
 import { nFormatter } from "@/utils/numbers";
@@ -19,6 +20,7 @@ export default function ParsedFilesMenu({
   workspaceSlug,
   threadSlug = null,
 }) {
+  const { t } = useTranslation();
   const { user } = useUser();
   const canEmbed = !user || user.role !== "default";
   const initialContextWindowLimitExceeded =
@@ -93,7 +95,10 @@ export default function ParsedFilesMenu({
       const allEmbedded = results.every(({ response }) => response.ok);
       showToast(
         allEmbedded
-          ? `${files.length} ${pluralize("file", files.length)} embedded successfully`
+          ? `${files.length} ${pluralize(
+              "file",
+              files.length
+            )} embedded successfully`
           : "Failed to embed files",
         allEmbedded ? "success" : "error"
       );
@@ -121,13 +126,19 @@ export default function ParsedFilesMenu({
               "data-tooltip-content":
                 "You have exceeded the context window limit. Some files may be truncated or excluded from chat responses. Responses may hallucinate or lack relevant information.",
             })}
-          className={`flex items-center gap-x-1 ${contextWindowLimitExceeded && !canEmbed ? "cursor-pointer" : ""}`}
+          className={`flex items-center gap-x-1 ${
+            contextWindowLimitExceeded && !canEmbed ? "cursor-pointer" : ""
+          }`}
         >
           {contextWindowLimitExceeded && (
             <Warning size={14} className="text-orange-600" />
           )}
           <div
-            className={`text-xs ${contextWindowLimitExceeded ? "text-orange-600" : "text-theme-text-secondary"}`}
+            className={`text-xs ${
+              contextWindowLimitExceeded
+                ? "text-orange-600"
+                : "text-theme-text-secondary"
+            }`}
           >
             {nFormatter(currentTokens)} /{" "}
             {contextWindow ? nFormatter(contextWindow) : "--"} tokens
@@ -142,9 +153,7 @@ export default function ParsedFilesMenu({
               size={16}
             />
             <div className="text-xs text-theme-text-primary">
-              Your context window is getting full. Some files may be truncated
-              or excluded from chat responses. We recommend embedding these
-              files directly into your workspace for better results.
+              {t("customer-ui.context-full")}
             </div>
           </div>
           <button
@@ -155,10 +164,13 @@ export default function ParsedFilesMenu({
             {isEmbedding ? (
               <>
                 <CircleNotch size={14} className="animate-spin" />
-                Embedding {embedProgress} of {files.length} files...
+                {t("customer-ui.embedding-progress", {
+                  done: embedProgress,
+                  total: files.length,
+                })}
               </>
             ) : (
-              "Embed Files into Workspace"
+              t("customer-ui.embed-into-workspace")
             )}
           </button>
         </div>
@@ -187,12 +199,12 @@ export default function ParsedFilesMenu({
         {isLoading && (
           <div className="flex items-center justify-center gap-2 text-xs text-theme-text-secondary text-center py-2">
             <CircleNotch size={16} className="animate-spin" />
-            Loading...
+            {t("customer-ui.loading")}
           </div>
         )}
         {!isLoading && files.length === 0 && (
           <div className="text-xs text-theme-text-secondary text-center py-2">
-            No files found
+            {t("customer-ui.no-files")}
           </div>
         )}
       </div>

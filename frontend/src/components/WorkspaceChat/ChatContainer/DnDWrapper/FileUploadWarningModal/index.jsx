@@ -6,12 +6,10 @@ import Modal, {
   ModalSecondaryButton,
 } from "@/components/lib/Modal";
 import { useTranslation } from "react-i18next";
-import pluralize from "pluralize";
 import { numberWithCommas } from "@/utils/numbers";
 import useUser from "@/hooks/useUser";
 import { Link } from "react-router-dom";
 import Paths from "@/utils/paths";
-import Workspace from "@/models/workspace";
 
 export default function FileUploadWarningModal({
   show,
@@ -35,30 +33,30 @@ export default function FileUploadWarningModal({
       />
       <ModalBody>
         <p className="text-zinc-300 light:text-slate-700 text-sm">
-          Your workspace is using {numberWithCommas(tokenCount)} of{" "}
-          {numberWithCommas(maxTokens)} available tokens. We recommend keeping
-          usage below {(Workspace.maxContextWindowLimit * 100).toFixed(0)}% to
-          ensure the best chat experience. Adding {fileCount} more{" "}
-          {pluralize("file", fileCount)} would exceed this limit.{" "}
+          {t("customer-ui.upload-warning-body", {
+            used: numberWithCommas(tokenCount),
+            max: numberWithCommas(maxTokens),
+            count: fileCount,
+          })}{" "}
           <Link
             target="_blank"
             to={Paths.documentation.contextWindows()}
             className="text-zinc-400 light:text-slate-500 text-sm underline"
           >
-            Learn more about context windows &rarr;
+            {t("customer-ui.upload-warning-learn")} &rarr;
           </Link>
         </p>
         <p className="text-zinc-300 light:text-slate-700 text-sm">
-          Choose how you would like to proceed with these uploads.
+          {t("customer-ui.upload-warning-choose")}
         </p>
       </ModalBody>
       <ModalFooter>
         <ModalSecondaryButton onClick={onClose} type="button">
-          Cancel
+          {t("customer-ui.cancel")}
         </ModalSecondaryButton>
         <div className="flex items-center gap-x-2">
           <ModalSecondaryButton onClick={onContinue} type="button">
-            Continue Anyway
+            {t("customer-ui.continue-anyway")}
           </ModalSecondaryButton>
           {canEmbed && (
             <ModalPrimaryButton
@@ -66,7 +64,7 @@ export default function FileUploadWarningModal({
               disabled={!canEmbed}
               type="button"
             >
-              Embed {pluralize("File", fileCount)}
+              {t("customer-ui.embed-files")}
             </ModalPrimaryButton>
           )}
         </div>

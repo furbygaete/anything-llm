@@ -15,6 +15,7 @@ import {
   USER_PROMPT_INPUT_MAP,
 } from "@/utils/constants";
 import { useTranslation } from "react-i18next";
+import { isSimpleMode, setSimpleMode } from "@/utils/simpleMode";
 
 export default function UserButton() {
   const { t } = useTranslation();
@@ -86,6 +87,17 @@ export default function UserButton() {
                 {t("profile_settings.account")}
               </button>
             )}
+            <button
+              type="button"
+              onClick={() => {
+                setSimpleMode(!isSimpleMode());
+                setShowMenu(false);
+              }}
+              className="border-none text-white hover:bg-theme-action-menu-item-hover w-full text-left px-4 py-1.5 rounded-md whitespace-nowrap"
+            >
+              {isSimpleMode() ? "✓ " : ""}
+              {t("customer-ui.simple-view")}
+            </button>
             <a
               href={supportEmail}
               className="text-white hover:bg-theme-action-menu-item-hover w-full text-left px-4 py-1.5 rounded-md"

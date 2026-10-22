@@ -92,6 +92,7 @@ function SearchResultWrapper({ children }) {
 }
 
 function SearchResults({ searchResults, searchTerm, loading }) {
+  const { t } = useTranslation();
   if (!searchTerm || searchTerm.length < 3) return null;
   if (loading)
     return (
@@ -113,7 +114,7 @@ function SearchResults({ searchResults, searchTerm, loading }) {
       <SearchResultWrapper>
         <div className="flex flex-col gap-y-[8px] h-[200px] justify-center items-center">
           <p className="text-theme-text-secondary text-xs font-semibold text-center">
-            No results found for
+            {t("customer-ui.no-results-for")}
             <br />
             <span className="text-theme-text-primary font-semibold text-sm">
               "{searchTerm}"

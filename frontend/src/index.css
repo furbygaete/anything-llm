@@ -326,7 +326,6 @@ a {
   }
 }
 
-
 @media (prefers-color-scheme: light) {
   .sidebar-items:after {
     content: " ";
@@ -1190,4 +1189,23 @@ textarea {
     "Segoe UI Emoji",
     "Segoe UI Symbol",
     "Noto Color Emoji" !important;
+}
+/* Sabia: simple view (toggle in the user menu, see utils/simpleMode.js). */
+.sabia-simple-only {
+  display: none !important;
+}
+html.sabia-simple .sabia-simple-only {
+  display: revert !important;
+}
+html.sabia-simple {
+  font-size: 120%;
+}
+html.sabia-simple [data-simple-hide] {
+  display: none !important;
+}
+html.sabia-simple .sabia-send {
+  width: auto !important;
+  height: 2.5rem !important;
+  padding: 0 1.1rem;
+  gap: 0.4rem;
 }

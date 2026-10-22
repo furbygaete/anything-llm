@@ -49,7 +49,9 @@ export default function Sidebar() {
                 <img
                   src={logo}
                   alt="Logo"
-                  className={`rounded max-h-[24px] object-contain transition-opacity duration-500 ${showSidebar ? "opacity-100" : "opacity-0"}`}
+                  className={`rounded max-h-[24px] object-contain transition-opacity duration-500 ${
+                    showSidebar ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </Link>
             </div>
@@ -62,7 +64,9 @@ export default function Sidebar() {
               <div className="flex-grow flex flex-col min-w-[235px] min-h-0">
                 <div className="relative h-[calc(100%-60px)] flex flex-col w-full justify-between pt-[10px] overflow-y-scroll no-scroll">
                   <div className="flex flex-col gap-y-[14px]">
-                    <SearchBox user={user} showNewWsModal={showNewWsModal} />
+                    <span data-simple-hide className="contents">
+                      <SearchBox user={user} showNewWsModal={showNewWsModal} />
+                    </span>
                     <ActiveWorkspaces />
                   </div>
                 </div>
